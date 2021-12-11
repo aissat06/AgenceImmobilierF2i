@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+{% block title %}Gérer les biens{% endblock %}
+{% block body %}
+<div class="container mt-4">
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+    <h2>Gérer les biens</h2>
+    <a class="btn btn-secondary mb-4" href=" {{ path('admin.new')}} "> Créer un bien</a>
+    <div class="row flex">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for property in properties %}
+                <tr>
+                    <td>{{ property.title }}</td>
+                    <td>
+                        <a href=" {{ path('admin.edit', {id: property.id})}} " class="btn btn-secondary">
+                            Editer</a>
+                        {#<a href=" {{ path('admin.delete', {id, property.id})}} " onsubmit="return confirm(Etes vous sur de vouloir supprimer cet utilisateur ?');" class="btn btn-secondary">
+                            Supprimer</a>#}
+                            <form action=" {{ path('admin.delete', {id: property.id})}} ">
+                                <!--<input type="hidden" name="_method" value="DELETE">-->
+                                <!-- generer un token -->
+                                <input type="hidden" name="_token" value=" {{ csrf_token('delete' ~ property.id )}}">
+                                <button class="btn btn-danger">Supprimer</button>
+                            </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

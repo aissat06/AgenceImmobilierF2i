@@ -4,9 +4,13 @@ namespace App\Entity;
 
 use App\Repository\PropertyRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Cocur\Slugify\Slugify;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=PropertyRepository::class)
+ * @UniqueEntity("title")
  */
 class Property
 {
@@ -19,11 +23,21 @@ class Property
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     * min=10, 
+     * max=255,
+     * minMessage = "Votre titre doit centenir au moins 10 caractères",
+     * maxMessage = "Votre titre doit centenir au maximum 250 caractères")
      */
     private $title;
-
+   
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\Range(
+     * min=20, 
+     * max=500,
+     * minMessage = "Votre description doit centenir au moins 20 caractères",
+     * maxMessage = "Votre description doit centenir au maximum 500 caractères")
      */
     private $description;
 
@@ -59,6 +73,7 @@ class Property
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex("/^[0-9]{5}$/")
      */
     private $postalCode;
 
@@ -75,6 +90,11 @@ class Property
     public function __construct()
     {
         $this->createdAt = new \DateTime();
+    }
+
+    public function getSlug()
+    {
+        return (new Slugify())->slugify($this->title);
     }
 
     public function getId(): ?int
@@ -145,6 +165,11 @@ class Property
     public function getPrice(): ?float
     {
         return $this->price;
+    }
+
+    public function getFormatedPrice(): string 
+    {
+        return number_format($this->price, 0, "", '.');
     }
 
     public function setPrice(float $price): self

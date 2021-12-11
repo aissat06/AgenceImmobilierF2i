@@ -1,0 +1,104 @@
+{#{% extends 'base.html.twig' %}
+
+{% block title %}Mes properties{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="jumbotron">
+    <h1> {{ property.title }} </h1>
+
+    <p> {{ property.description }} </p>
+</div>
+<div class='container'>
+    <div class='row flex justify-content-around'>
+            <div class="card w-25 me-1">
+                <div class="card-body">
+                    <h5 class='card-title'><a href="#">{{ property.title }}</a></h5>
+                    <p class="card-text">
+                        {{ property.city }} | {{ property.postalCode}}
+                    </p>
+                    <p class="card-text">{{ property.address }}</p>
+                    <p class="text-primary">{{ property.formatedPrice }} €</p>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+<style>
+    .jumbotron {
+        padding: 2rem 1rem;
+        margin-bottom: 2rem;
+        background-color: #e9ecef;
+        border-radius: .3rem;
+        text-align: center;
+    }
+           
+</style>
+{% endblock %}#}
+
+{% extends 'base.html.twig' %}
+{% block title property.title %}
+{% block body %}
+	<div class="jumbotron">
+		<div class="container mt-4 d-flex justify-content-center">
+			<div class="row">
+				<div class="col-md-12">
+					<h1>{{ property.title }}</h1>
+					<h2>{{ property.rooms }}
+						pièces -
+						{{ property.surface }}
+						m²
+					</h2>
+					<p class="text-primary" style="font-weight:bold;font-size:4rem;">{{ property.formatedPrice }}
+						$
+					</p>
+					<a href="#" class="btn btn-primary">Contacter l'agence</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container mt-6">
+		<nav class='nav nav-tabs' id='tabs'></nav>
+		<p>
+			{{ property.description | nl2br }}
+		</p>
+		<div class="row">
+			<div class="col-md-6">
+				<h2>Caractéristiques</h2>
+				<table class="table table-striped">
+					<tr>
+						<td>Surface habitable</td>
+					</tr>
+					<tr>
+						<td>Pièces</td>
+					</tr>
+					<tr>
+						<td>Etage</td>
+					</tr>
+				</table>
+			</div>
+			<div class="col-md-6">
+				<h2>Spécificités</h2>
+                <table class="table table-striped">
+					<tr>
+						<td>{{ property.surface }}
+							m²</td>
+					</tr>
+					<tr>
+						<td>{{ property.rooms }}</td>
+					</tr>
+					<tr>
+						<td>{{ property.floor }}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+    <!-- l'indentation en sélectionnant une portion de code, et en utilisant Ctrl+K+F -->
+{% endblock %}
+

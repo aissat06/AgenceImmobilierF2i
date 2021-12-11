@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block body %}
+    <h1 class="text-center mx-auto" style="margin-top:50px;margin-bottom:50px;">Inscrivez-vous</h1>
+    <div class="container" style="margin-bottom:50px;">
+        <form method="post">
+            <div class="column large-12 tab-12">
+                {{ form(form) }}
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button class="btn btn-primary" type="submit">S'inscrire</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <style>
+        .container .d-grid button {
+            color: #000;
+        }
+    </style>
+{% endblock %}

@@ -9,10 +9,11 @@ use Faker\Factory;
 
 class PropertyFixtures extends Fixture
 {
+
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
-        for ($i=0; $i < 100; $i++) { 
+        for ($i=0; $i < 50; $i++) { 
             $property = new Property();
             $property
             ->setTitle($faker->words(3, true))
@@ -24,9 +25,11 @@ class PropertyFixtures extends Fixture
             ->setCity($faker->city)
             ->setAddress($faker->address)
             ->setPostalCode($faker->postcode)
-            ->setSold(false);
+            ->setSold(false)
+            ->setImage('photo_par_defaut.jpg');
         $manager->persist($property);
         }
         $manager->flush();
+        /* executer la commande : bin/console doctrine:fixtures:load*/
     }
 }

@@ -25,6 +25,9 @@
                     </p>
                     <p class="card-text">{{ property.address }}</p>
                     <p class="text-primary">{{ property.formatedPrice }} €</p>
+                    <div class="text-center">
+                        <img src="/uploads/{{ property.image }}" width="160" height="160" alt="" style="margin: 15px;">
+                    </div>
                 </div>
             </div>
         {% endfor %}

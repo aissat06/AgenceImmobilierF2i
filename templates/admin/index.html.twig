@@ -2,11 +2,11 @@
 {% block title %}Gérer les biens{% endblock %}
 {% block body %}
 <div class="container mt-4">
-{% for message in app.flashes('success') %}
-    <div class="alert alert-success">
-        {{ message }}
-    </div>
-{% endfor %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
     <h2>Gérer les biens</h2>
     <a class="btn btn-secondary mb-4" href=" {{ path('admin.new')}} "> Créer un bien</a>
     <div class="row flex">

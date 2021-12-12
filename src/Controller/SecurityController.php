@@ -25,13 +25,15 @@ class SecurityController extends AbstractController
 
     public function login(AuthenticationUtils $authenticationUtils)
     {
+        $login = 'login';
         // serializable: prendre des données texte et les transférer en objet
         // authentiactionUtil un composant(objet) de symfony qui fait l'authentification
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
         return $this->render('security/login.html.twig', [
             'error' => $error,
-            'lastUsername' => $lastUsername
+            'lastUsername' => $lastUsername,
+            'actif' => $login,
         ]);
     }
 
@@ -41,6 +43,7 @@ class SecurityController extends AbstractController
 
     public function newUser(ManagerRegistry $doctrine, Request $request)
     {
+        $login = 'signup';
         $user = new User();
         $form = $this->createForm(RegisterType::class, $user);
         $form->handleRequest($request);
@@ -57,7 +60,8 @@ class SecurityController extends AbstractController
         }
         //renvoyer le formulaire sur le fichier Twig
         return $this->render('security/signup.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'actif' => $login,
         ]);
 
     }

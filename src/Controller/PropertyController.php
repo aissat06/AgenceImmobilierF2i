@@ -36,7 +36,7 @@ class PropertyController extends AbstractController
         $entityManager->flush();*/
 
         /* Methode 2 */
-
+        $propertyLink = 'property';
         $repository = $doctrine->getRepository(Property::class);
         $properties = $repository->findAll();
         //$properties = $repository->findOneBy(['surface' => 60]);
@@ -52,6 +52,7 @@ class PropertyController extends AbstractController
          */
         return $this->render('properties/index.html.twig', [
             'properties' => $properties,
+            'actif' => $propertyLink,
         ]);
     }
 
@@ -62,10 +63,11 @@ class PropertyController extends AbstractController
     {
         $repository = $doctrine->getRepository(Property::class);
         $property = $repository->findOneBy(['id' => $id]);
-    
+        $propertyLink = 'property';
         //dd($property);
         return $this->render('properties/show.html.twig', [
             'property' => $property,
+            'actif' => $propertyLink,
         ]);        
     }
 }

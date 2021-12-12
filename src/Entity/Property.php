@@ -87,9 +87,15 @@ class Property
      */
     private $createdAt;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
+        $this->image = 'photo_par_defaut.jpg' ;
     }
 
     public function getSlug()
@@ -235,6 +241,18 @@ class Property
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

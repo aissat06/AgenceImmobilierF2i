@@ -1,21 +1,26 @@
 {% extends 'base.html.twig' %}
-{% block title %}Se connecter{% endblock %}
+{% block title %}Se connecter
+{% endblock %}
 {% block body %}
-<div class="container mt-4">
-    {% if error %}
-    <div class="alert alert-danger">
-        {{ error.messageKey }}
-    </div>
-    {% endif %}
-    <form action="{{ path('login') }}" method="post">
-        <div class="form-group">
-            <label for="username">Nom d'utilisateur : </label>
-            <input type="text" id="username" name="_username" class="form-control"
-            value="{{ lastUsername }}">
-            <label for="password">Mot de passe : </label>
-            <input type="password" id="password" name="_password" class="form-control">
-            <button type="submit" class="btn btn-primary mt-4">Se connecter</button>
-        </div>
-    </form>
-</div>
+	<div class="container mt-4">
+		{% if error %}
+			<div class="alert alert-danger">
+				{{ error.messageKey }}
+			</div>
+		{% endif %}
+		<form action="{{ path('login') }}" method="post">
+			<div class="form-group">
+				<label for="username">Nom d'utilisateur :
+				</label>
+				<input type="text" id="username" name="_username" class="form-control" value="{{ lastUsername }}">
+				<label for="password">Mot de passe :
+				</label>
+				<input type="password" id="password" name="_password" class="form-control">
+                <input type="hidden" name="_failure_path" value="{{ path('login') }}"/>
+                <!-- Eviter les attaques CSRF de connexion: générer un jeton CSRF et le stocker en tant que champ masqué du formulaire-->
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+				<button type="submit" class="btn btn-primary mt-4">Se connecter</button>
+			</div>
+		</form>
+	</div>
 {% endblock %}

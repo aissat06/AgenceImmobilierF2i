@@ -13,9 +13,11 @@ class HomeController extends AbstractController
      */
     public function index(): Response
     {
+        $home = 'home';
         return $this->render('home/index.html.twig', [
             'controller_name' => 'Agence Immobilier',
-            'admin' => 'Youcef'
+            'admin' => 'Youcef',
+            'actif' => $home,
         ]);
     }
 }

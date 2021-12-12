@@ -48,6 +48,7 @@
 		<div class="container mt-4 d-flex justify-content-center">
 			<div class="row">
 				<div class="col-md-12">
+					<img class="center rounded-circle" src="/uploads/{{ property.image }}" width="160" height="160" alt="" style="margin: 15px;">
 					<h1>{{ property.title }}</h1>
 					<h2>{{ property.rooms }}
 						pièces -
@@ -57,7 +58,7 @@
 					<p class="text-primary" style="font-weight:bold;font-size:4rem;">{{ property.formatedPrice }}
 						$
 					</p>
-					<a href="#" class="btn btn-primary">Contacter l'agence</a>
+					
 				</div>
 			</div>
 		</div>
@@ -80,6 +81,7 @@
 					<tr>
 						<td>Etage</td>
 					</tr>
+					
 				</table>
 			</div>
 			<div class="col-md-6">
@@ -95,8 +97,12 @@
 					<tr>
 						<td>{{ property.floor }}</td>
 					</tr>
+					
 				</table>
 			</div>
+		</div>
+		<div class="container mt-4 d-flex justify-content-center">
+			<a href="#" class="btn btn-primary">Contacter l'agence</a>
 		</div>
 	</div>
     <!-- l'indentation en sélectionnant une portion de code, et en utilisant Ctrl+K+F -->
